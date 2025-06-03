@@ -22,6 +22,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd ~/erp
+          git add .
+          git commit -m "Save local changes before pulling"
           git pull origin main
           source venv/bin/activate
           pip install -r requirements.txt
